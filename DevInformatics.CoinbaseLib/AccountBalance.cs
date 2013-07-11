@@ -51,5 +51,10 @@ namespace DevInformatics.CoinbaseLib
                 throw e;
             }
         }
+
+        public override string ToString()
+        {
+            return string.Format("Amount={0} | Currency={1}", this.Amount, this.Currency);
+        }
     }
 }
