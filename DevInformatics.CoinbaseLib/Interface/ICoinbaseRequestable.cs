@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevInformatics.CoinbaseLib
+namespace DevInformatics.CoinbaseLib.Interface
 {
     public interface ICoinbaseRequestable : ICoinbaseCommunicable
     {

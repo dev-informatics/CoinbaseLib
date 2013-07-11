@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevInformatics.CoinbaseLib.Interface;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 
-namespace DevInformatics.CoinbaseLib
+namespace DevInformatics.CoinbaseLib.Model
 {    
     [DataContract]
     public class BuyPrice : ICoinbaseRequestable
