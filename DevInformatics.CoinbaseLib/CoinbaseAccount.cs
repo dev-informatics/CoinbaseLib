@@ -25,9 +25,35 @@ namespace DevInformatics.CoinbaseLib
             ApiKey = apiKey;
         }
 
-        public string ConstructRequest(string requestUrl)
+        public string ConstructRequestUrl(string requestUrl)
         {
             return string.Format("{0}{1}?api_key={2}", _url, requestUrl, ApiKey);
+        }
+
+        public AccountBalance GetAccountBalance()
+        {
+            var accountBalance = new CoinbaseRequest<AccountBalance>(this).Request();
+            return accountBalance;
+        }
+
+        public ReceiveAddress GetReceiveAddress()
+        {
+            var receiveAddress = new CoinbaseRequest<ReceiveAddress>(this).Request();
+            return receiveAddress;
+        }
+
+        public BuyPrice GetBuyPrice(double quantity)
+        {
+            var buyPrice = new BuyPrice() { Quantity = quantity };
+            buyPrice = new CoinbaseRequest<BuyPrice>(this).Request(buyPrice);
+            return buyPrice;
+        }
+
+        public SellPrice GetSellPrice(double quantity)
+        {
+            var sellPrice = new SellPrice() { Quantity = quantity };
+            sellPrice = new CoinbaseRequest<SellPrice>(this).Request(sellPrice);
+            return sellPrice;
         }
     }
 }

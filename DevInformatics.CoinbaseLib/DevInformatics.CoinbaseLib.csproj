@@ -42,9 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountBalance.cs" />
+    <Compile Include="BuyPrice.cs" />
     <Compile Include="CoinbaseAccount.cs" />
+    <Compile Include="CoinbaseRequest.cs" />
+    <Compile Include="ICoinbaseCommunicable.cs" />
+    <Compile Include="ICoinbaseRequestable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReceiveAddress.cs" />
+    <Compile Include="SellPrice.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
