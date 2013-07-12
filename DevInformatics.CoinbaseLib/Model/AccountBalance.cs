@@ -12,20 +12,9 @@ namespace DevInformatics.CoinbaseLib.Model
 {
     public class AccountBalance : ICoinbaseCommunicable 
     {
-        public string ApiEndPoint
-        {
-            get { return "account/balance"; }
-        }
-
+        public string ApiEndPoint { get { return "account/balance"; } }
         public decimal Amount { get; set; }
-
-        public string Currency { get; set; }
-
-        public AccountBalance()
-        {
-
-        }
-
+        public string Currency { get; set; }         
         public override string ToString()
         {
             return string.Format("Amount={0} | Currency={1}", this.Amount, this.Currency);

@@ -44,7 +44,7 @@ namespace DevInformatics.CoinbaseLib
             } // try
             catch (Exception e)
             {
-                throw e;
+                throw new CoinbaseCommunicationException("There has been a communications error", e);
             }
         }
 
@@ -89,8 +89,8 @@ namespace DevInformatics.CoinbaseLib
             } // try
             catch (Exception e)
             {
-                throw e;
-            } new NotImplementedException();
+                throw new CoinbaseCommunicationException("There has been a communications error", e);
+            } 
         }
     }
 }

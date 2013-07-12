@@ -17,9 +17,6 @@ namespace DevInformatics.CoinbaseLib.Model
         public int Num_Pages { get; set; }
         public int Current_Page { get; set; }
         public ICollection<TransactionData> Transactions { get; set; }        
-        public string ApiEndPoint
-        {
-            get { return "transactions"; }
-        }
+        public string ApiEndPoint { get { return "transactions"; } }
     }
 }

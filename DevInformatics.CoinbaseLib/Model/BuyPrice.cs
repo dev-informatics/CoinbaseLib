@@ -14,27 +14,12 @@ namespace DevInformatics.CoinbaseLib.Model
     [DataContract]
     public class BuyPrice : ICoinbaseCommunicable
     {
-        public string ApiEndPoint
-        {
-            get { return "prices/buy"; }
-        }      
-   
+        public string ApiEndPoint { get { return "prices/buy"; } }  
         public decimal Amount { get; set; }
-        public string Currency { get; set; }   
-     
-        [DataMember(IsRequired=false)]
-        public double Quantity { get; set; }
-        
-        public BuyPrice()
-        {
-
-        }
-
+        public string Currency { get; set; }               
         public override string ToString()
         {
-            return string.Format("Quantity:{0} | Amount:{1} | Currency:{2}", Quantity, Amount, Currency);
-        }
-
-        
+            return string.Format("Amount:{0} | Currency:{1}", Amount, Currency);
+        }       
     }
 }

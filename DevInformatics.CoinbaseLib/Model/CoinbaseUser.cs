@@ -7,16 +7,23 @@ using System.Threading.Tasks;
 
 namespace DevInformatics.CoinbaseLib.Model
 {
-    [DataContract]
     public class CoinbaseUser
-    {
-        [DataMember(Name="id")]
-        public string Id { get; set; }
-
-        [DataMember(Name="email")]
+    {       
+        public string Id { get; set; } 
         public string Email { get; set; }
-
-        [DataMember(Name="name")]
         public string Name { get; set; }
+
+        public string Time_Zone { get; set; }
+
+        public string Native_Currency { get; set; }
+        public CoinbaseAmount Balance { get; set; }
+
+        public int Buy_Level { get; set; }
+
+        public int Sell_Level { get; set; }
+
+        public CoinbaseAmount Buy_Limit { get; set; }
+
+        public CoinbaseAmount Sell_Limit { get; set; }
     }
 }

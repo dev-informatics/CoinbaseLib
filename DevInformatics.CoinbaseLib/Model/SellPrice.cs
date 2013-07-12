@@ -12,22 +12,12 @@ namespace DevInformatics.CoinbaseLib.Model
 {
     public class SellPrice : ICoinbaseCommunicable
     {
-        public string ApiEndPoint
-        {
-            get { return "prices/sell"; }
-        }
-
+        public string ApiEndPoint { get { return "prices/sell"; } }
         public decimal Amount { get; set; }
-        public string Currency { get; set; }
-
-        public double Quantity { get; set; }
-        public SellPrice()
-        {
-
-        }
+        public string Currency { get; set; }   
         public override string ToString()
         {
-            return string.Format("Quantity:{0} | Amount:{1} | Currency:{2}", Quantity, Amount, Currency);
+            return string.Format("Amount:{0} | Currency:{1}", Amount, Currency);
         }                
     }
 }
