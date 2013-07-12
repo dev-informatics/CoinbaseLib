@@ -10,11 +10,11 @@ using System.Web.Script.Serialization;
 
 namespace DevInformatics.CoinbaseLib
 {
-    public class CoinbaseRequest<T> where T : ICoinbaseRequestable, new()
+    public class HttpsCoinbaseRequest<T> : ICoinbaseRequest<T> where T : ICoinbaseRequestable, new() 
     {
-        public CoinbaseAccount CoinbaseAccount { get; set; }
+        public IHttpsCoinbaseAccount CoinbaseAccount { get; set; }
 
-        public CoinbaseRequest(CoinbaseAccount coinbaseAccount)
+        public HttpsCoinbaseRequest(IHttpsCoinbaseAccount coinbaseAccount)
         {
             this.CoinbaseAccount = coinbaseAccount;
         }

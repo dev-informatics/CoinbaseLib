@@ -42,13 +42,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CoinbasePost.cs" />
+    <Compile Include="Interface\ICoinbaseAccount.cs" />
+    <Compile Include="Interface\ICoinbaseRequest.cs" />
     <Compile Include="Interface\ICoinbasePostable.cs" />
+    <Compile Include="Interface\IHttpsCoinbaseAccount.cs" />
     <Compile Include="Model\AccountBalance.cs" />
+    <Compile Include="Model\Balance.cs" />
     <Compile Include="Model\BuyPrice.cs" />
-    <Compile Include="CoinbaseAccount.cs" />
-    <Compile Include="CoinbaseRequest.cs" />
+    <Compile Include="HttpsCoinbaseAccount.cs" />
+    <Compile Include="HttpsCoinbaseRequest.cs" />
     <Compile Include="Interface\ICoinbaseCommunicable.cs" />
     <Compile Include="Interface\ICoinbaseRequestable.cs" />
+    <Compile Include="Model\Transaction.cs" />
+    <Compile Include="Model\TransactionsResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\ReceiveAddress.cs" />
     <Compile Include="Model\SellPrice.cs" />

@@ -1,4 +1,5 @@
-﻿using DevInformatics.CoinbaseLib.Model;
+﻿using DevInformatics.CoinbaseLib.Interface;
+using DevInformatics.CoinbaseLib.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,21 +8,15 @@ using System.Threading.Tasks;
 
 namespace DevInformatics.CoinbaseLib
 {
-    public class CoinbaseAccount 
+    public class HttpsCoinbaseAccount : IHttpsCoinbaseAccount
     {
         private const string version = "v1/";
-
-        public enum ResourceRequest
-        {
-            AccountBalance,
-            ReceiveAddress
-        }
 
         private const string _url = "https://coinbase.com/api/" + version;
 
         public string ApiKey { get; set; }
 
-        public CoinbaseAccount(string apiKey)
+        public HttpsCoinbaseAccount(string apiKey)
         {
             ApiKey = apiKey;
         }
@@ -33,27 +28,27 @@ namespace DevInformatics.CoinbaseLib
 
         public AccountBalance GetAccountBalance()
         {
-            var accountBalance = new CoinbaseRequest<AccountBalance>(this).Request();
+            var accountBalance = new HttpsCoinbaseRequest<AccountBalance>(this).Request();
             return accountBalance;
         }
 
         public ReceiveAddress GetReceiveAddress()
         {
-            var receiveAddress = new CoinbaseRequest<ReceiveAddress>(this).Request();
+            var receiveAddress = new HttpsCoinbaseRequest<ReceiveAddress>(this).Request();
             return receiveAddress;
         }
 
         public BuyPrice GetBuyPrice(double quantity)
         {
             var buyPrice = new BuyPrice() { Quantity = quantity };
-            buyPrice = new CoinbaseRequest<BuyPrice>(this).Request(buyPrice);
+            buyPrice = new HttpsCoinbaseRequest<BuyPrice>(this).Request(buyPrice);
             return buyPrice;
         }
 
         public SellPrice GetSellPrice(double quantity)
         {
             var sellPrice = new SellPrice() { Quantity = quantity };
-            sellPrice = new CoinbaseRequest<SellPrice>(this).Request(sellPrice);
+            sellPrice = new HttpsCoinbaseRequest<SellPrice>(this).Request(sellPrice);
             return sellPrice;
         }
     }

@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace DevInformatics.CoinbaseLib
 {
-    public class CoinbasePost<T> where T : ICoinbasePostable, new()
+    public class HttpsCoinbasePost<T> where T : ICoinbasePostable, new()
     {
-        public CoinbaseAccount CoinbaseAccount { get; set; }
+        public IHttpsCoinbaseAccount CoinbaseAccount { get; set; }
 
-        public CoinbasePost()
+        public HttpsCoinbasePost()
         {
 
         }
 
-        public CoinbasePost(CoinbaseAccount coinbaseAccount)
+        public HttpsCoinbasePost(IHttpsCoinbaseAccount coinbaseAccount)
         {
             CoinbaseAccount = coinbaseAccount;
         }
