@@ -10,13 +10,8 @@ using System.Web.Script.Serialization;
 
 namespace DevInformatics.CoinbaseLib.Model
 {
-    public class AccountBalance : ICoinbaseRequestable
+    public class AccountBalance : ICoinbaseCommunicable 
     {
-        public string UrlParameters
-        {
-            get { return string.Empty; }
-        }
-
         public string ApiEndPoint
         {
             get { return "account/balance"; }
@@ -30,6 +25,7 @@ namespace DevInformatics.CoinbaseLib.Model
         {
 
         }
+
         public override string ToString()
         {
             return string.Format("Amount={0} | Currency={1}", this.Amount, this.Currency);

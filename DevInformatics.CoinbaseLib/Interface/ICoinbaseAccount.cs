@@ -13,5 +13,6 @@ namespace DevInformatics.CoinbaseLib.Interface
         ReceiveAddress GetReceiveAddress();
         BuyPrice GetBuyPrice(double quantity);
         SellPrice GetSellPrice(double quantity);
+        TransactionsRequestResponse GetTransactions(int page = 1);
     }
 }

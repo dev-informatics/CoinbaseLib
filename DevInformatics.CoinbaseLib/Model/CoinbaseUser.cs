@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 namespace DevInformatics.CoinbaseLib.Model
 {
     [DataContract]
-    public class Transaction
+    public class CoinbaseUser
     {
         [DataMember(Name="id")]
         public string Id { get; set; }
 
-        [DataMember(Name="created_at")]
-        public DateTime CreateAt { get; set; }
-        public Balance Amount { get; set; }
-        public bool Request { get; set; }
-        public string Status { get; set; }
+        [DataMember(Name="email")]
+        public string Email { get; set; }
+
+        [DataMember(Name="name")]
+        public string Name { get; set; }
     }
 }

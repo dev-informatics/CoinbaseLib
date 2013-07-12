@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DevInformatics.CoinbaseLib.Model
 {
-    public class Balance
+    public class CoinbaseAmount
     {
         public decimal Amount { get; set; }
         public string Currency { get; set; }

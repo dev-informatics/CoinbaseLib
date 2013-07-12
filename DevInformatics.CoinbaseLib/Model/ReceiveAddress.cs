@@ -11,8 +11,7 @@ using System.Web.Script.Serialization;
 
 namespace DevInformatics.CoinbaseLib.Model
 {
-    [DataContract]
-    public class ReceiveAddress : ICoinbaseRequestable
+    public class ReceiveAddress : ICoinbaseCommunicable
     {
         public string UrlParameters
         {

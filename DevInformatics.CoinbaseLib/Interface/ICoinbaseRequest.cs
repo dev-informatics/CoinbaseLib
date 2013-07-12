@@ -7,9 +7,16 @@ using System.Threading.Tasks;
 
 namespace DevInformatics.CoinbaseLib.Interface
 {
+    public enum ParameterType
+    {
+        URI,
+        QUERYSTRING
+    }
+
     public interface ICoinbaseRequest<T>
     {
-        T Request(T CEntity);
         T Request();
+
+        T Request(IDictionary<string, string> parameters, ParameterType parameterType);
     }
 }

@@ -13,53 +13,14 @@ using System.Web.Script.Serialization;
 
 namespace DevInformatics.CoinbaseLib
 {
-    public class HttpsCoinbaseRequest<T> : ICoinbaseRequest<T> where T : ICoinbaseRequestable, new() 
+    public class HttpsCoinbaseRequest<T> : ICoinbaseRequest<T> where T : ICoinbaseCommunicable, new() 
     {
         public IHttpsCoinbaseAccount CoinbaseAccount { get; set; }
 
         public HttpsCoinbaseRequest(IHttpsCoinbaseAccount coinbaseAccount)
         {
             this.CoinbaseAccount = coinbaseAccount;
-        }
-
-        public T Request(T CEntity)
-        {
-            try
-            {
-                X509Certificate certificate;
-
-                using(Stream certStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(GetType(), @"ca-coinbase.crt"))
-                {
-                    byte[] cert;
-                    cert = new byte[certStream.Length];
-                    for(int i = 0; i < certStream.Length; i++)
-                    {
-                        cert[i] = (byte)certStream.ReadByte();
-                    } // for
-                    certificate = new X509Certificate();
-                    certificate.Import(cert);
-                } // using
-
-                var httpWebRequest = HttpWebRequest.CreateHttp(this.CoinbaseAccount.ConstructRequestUrl(CEntity.ApiEndPoint) + CEntity.UrlParameters);
-                httpWebRequest.ClientCertificates.Add(certificate);
-
-                var response = string.Empty;
-
-                using(var streamReader = new StreamReader(httpWebRequest.GetResponse().GetResponseStream()))
-                {
-                    response = streamReader.ReadToEnd();
-                }
-
-                var serializer = new JavaScriptSerializer();
-                CEntity = serializer.Deserialize<T>(response);
-
-                return CEntity;
-            } // try
-            catch(Exception e)
-            {
-                throw e;
-            }
-        }
+        }            
 
         public T Request()
         {
@@ -85,6 +46,51 @@ namespace DevInformatics.CoinbaseLib
             {
                 throw e;
             }
+        }
+
+
+        public T Request(IDictionary<string, string> parameters, ParameterType parameterType)
+        {
+            try
+            {
+                var cEntity = new T();
+
+                var getParams = new StringBuilder();
+                var apiEndpont = cEntity.ApiEndPoint;
+
+                if (parameterType == ParameterType.QUERYSTRING)
+                {
+                    foreach (string key in parameters.Keys)
+                    {
+                        getParams.Append("&" + key + "=" + parameters[key]);
+                    } // foreach
+                } // if
+                else
+                {
+                    foreach (string key in parameters.Keys)
+                    {
+                        apiEndpont += "/" + parameters[key];
+                    } // foreach
+                } // else
+
+                var httpWebRequest = HttpWebRequest.CreateHttp(this.CoinbaseAccount.ConstructRequestUrl(apiEndpont) + getParams);
+
+                var response = string.Empty;
+
+                using (var streamReader = new StreamReader(httpWebRequest.GetResponse().GetResponseStream()))
+                {
+                    response = streamReader.ReadToEnd();
+                }
+
+                var serializer = new JavaScriptSerializer();
+                cEntity = serializer.Deserialize<T>(response);
+
+                return cEntity;
+            } // try
+            catch (Exception e)
+            {
+                throw e;
+            } new NotImplementedException();
         }
     }
 }

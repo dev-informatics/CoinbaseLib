@@ -12,18 +12,12 @@ using System.Web.Script.Serialization;
 namespace DevInformatics.CoinbaseLib.Model
 {    
     [DataContract]
-    public class BuyPrice : ICoinbaseRequestable
+    public class BuyPrice : ICoinbaseCommunicable
     {
         public string ApiEndPoint
         {
             get { return "prices/buy"; }
-        }
-
-        private string urlParameters = string.Empty;
-        public string UrlParameters
-        {
-            get { return "&qty=" + Quantity.ToString(); }
-        }
+        }      
    
         public decimal Amount { get; set; }
         public string Currency { get; set; }   

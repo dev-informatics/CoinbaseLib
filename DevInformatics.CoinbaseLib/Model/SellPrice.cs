@@ -10,13 +10,8 @@ using System.Web.Script.Serialization;
 
 namespace DevInformatics.CoinbaseLib.Model
 {
-    public class SellPrice : ICoinbaseRequestable
+    public class SellPrice : ICoinbaseCommunicable
     {
-        public string UrlParameters
-        {
-            get { return "&qty=" + Quantity.ToString(); }
-        }
-
         public string ApiEndPoint
         {
             get { return "prices/sell"; }
