@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
+using System.Resources;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
@@ -23,7 +26,22 @@ namespace DevInformatics.CoinbaseLib
         {
             try
             {
+                X509Certificate certificate;
+
+                using(Stream certStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(GetType(), @"ca-coinbase.crt"))
+                {
+                    byte[] cert;
+                    cert = new byte[certStream.Length];
+                    for(int i = 0; i < certStream.Length; i++)
+                    {
+                        cert[i] = (byte)certStream.ReadByte();
+                    } // for
+                    certificate = new X509Certificate();
+                    certificate.Import(cert);
+                } // using
+
                 var httpWebRequest = HttpWebRequest.CreateHttp(this.CoinbaseAccount.ConstructRequestUrl(CEntity.ApiEndPoint) + CEntity.UrlParameters);
+                httpWebRequest.ClientCertificates.Add(certificate);
 
                 var response = string.Empty;
 
